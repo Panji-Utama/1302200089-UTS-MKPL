@@ -5,6 +5,38 @@ import java.time.Month;
 import java.util.LinkedList;
 import java.util.List;
 
+public class InfoPribadi {
+	private String firstName;
+	private String lastName;
+	private String idNumber;
+	private String address;
+	private boolean isForeigner;
+	private Gender gender;
+
+	public InfoPribadi(String firstName, String lastName, String idNumber, String address, boolean isForeigner,
+			Gender gender) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.idNumber = idNumber;
+		this.address = address;
+		this.isForeigner = isForeigner;
+		this.gender = gender;
+	}
+}
+
+public class TglMasuk {
+	private int yearJoined;
+	private int monthJoined;
+	private int dayJoined;
+
+	public TglMasuk(int yearJoined, int monthJoined, int dayJoined) {
+		this.yearJoined = yearJoined;
+		this.monthJoined = monthJoined;
+		this.dayJoined = dayJoined;
+	}
+
+}
+
 public class Employee {
 
 	public enum Gender {
@@ -13,19 +45,10 @@ public class Employee {
 	}
 
 	private String employeeId;
-	private String firstName;
-	private String lastName;
-	private String idNumber;
-	private String address;
+	private InfoPribadi infoPribadi;
+	private TglMasuk tglMasuk;
 
-	private int yearJoined;
-	private int monthJoined;
-	private int dayJoined;
 	private int monthWorkingInYear;
-
-	private boolean isForeigner;
-	private Gender gender;
-
 	private int monthlySalary;
 	private int otherMonthlyIncome;
 	private int annualDeductible;
@@ -36,18 +59,10 @@ public class Employee {
 	private List<String> childNames;
 	private List<String> childIdNumbers;
 
-	public Employee(String employeeId, String firstName, String lastName, String idNumber, String address,
-			int yearJoined, int monthJoined, int dayJoined, boolean isForeigner, boolean gender) {
+	public Employee(String employeeId, InfoPribadi infoPribadi, TglMasuk tglMasuk) {
 		this.employeeId = employeeId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.idNumber = idNumber;
-		this.address = address;
-		this.yearJoined = yearJoined;
-		this.monthJoined = monthJoined;
-		this.dayJoined = dayJoined;
-		this.isForeigner = isForeigner;
-		this.gender = gender;
+		this.infoPribadi = infoPribadi;
+		this.tglMasuk = tglMasuk;
 
 		childNames = new LinkedList<String>();
 		childIdNumbers = new LinkedList<String>();
