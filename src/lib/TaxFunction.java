@@ -13,8 +13,11 @@ public class TaxFunction {
 	 * Jika pegawai sudah memiliki anak maka penghasilan tidak kena pajaknya ditambah sebesar Rp 4.500.000 per anak sampai anak ketiga.
 	 * 
 	 */
-	
-	
+
+	static int PenghasilanTanpaPajak = 54000000;
+	static int BonusMarried = 4500000;
+	static float Pajak = 5/100;
+
 	public static int calculateTax(int monthlySalary, int otherMonthlyIncome, int numberOfMonthWorking, int deductible, boolean isMarried, int numberOfChildren) {
 		
 		int tax = 0;
@@ -28,9 +31,9 @@ public class TaxFunction {
 		}
 		
 		if (isMarried) {
-			tax = (int) Math.round(0.05 * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - (54000000 + 4500000 + (numberOfChildren * 1500000))));
+			tax = (int) Math.round(PenghasilanBersihMarried(monthlySalary, otherMonthlyIncome, numberOfMonthWorking, deductible, numberOfChildren));
 		}else {
-			tax = (int) Math.round(0.05 * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - 54000000));
+			tax = (int) Math.round(PenghasilanBersihNormal(monthlySalary, otherMonthlyIncome, numberOfMonthWorking, deductible));
 		}
 		
 		if (tax < 0) {
@@ -39,6 +42,14 @@ public class TaxFunction {
 			return tax;
 		}
 			 
+	}
+
+	public static int PenghasilanBersihMarried(int monthlySalary, int otherMonthlyIncome, int numberOfMonthWorking, int deductible, int numberOfChildren) {
+		return (Pajak * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - (PenghasilanTanpaPajak + BonusMarried + (numberOfChildren * 1500000))));
+	}
+
+	public static int PenghasilanBersihNormal(int monthlySalary, int otherMonthlyIncome, int numberOfMonthWorking, int deductible) {
+		return (Pajak * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - PenghasilanTanpaPajak));
 	}
 	
 }
